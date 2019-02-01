@@ -1,0 +1,150 @@
+,"**Locations based on: Permiter, Productivity, and Prevention",,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,,
+Cam,Location**,Data Port,Switch Port,Camera Type,Mounts,IP Address,Model,Ethernet MAC,Serial,Notes,Existing/New,,IP Address,Model,Ethernet MAC,Serial#,Password
+1,C-1 Main Exit,,,IP Indoor,Pole (6-12'),,,,,,,,Need Ordered List by IP - IP range 172.30.1.xxx,,,,
+2,C-2 Main Entrance,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.101,VIV-FE9181-H,0002d1-5fd797,N/A,admin; CBSadmin1
+3,C-3 HS Entrance Vestibule,,,HS Cam,,172.30.1.110,AXS-P8524,accc8e-5cd438,,,Existing,,172.30.1.102,VIV-FE9181-H,0002d1-60543d,N/A,admin; CBSadmin1
+4,C-4 Main Entrance w/Monitor,,,IP WD Body,Monitor Mount,172.30.1.116,PAN-WV-S1131,bcc342-2ddc63,,All parts s/b re-located to new store,Existing,,172.30.1.103,VIV-FE9181-H,0002d1-6053ea,N/A,admin; CBSadmin1
+5,C-5 HS Exit Vestibule,,,HS Cam,,172.30.1.112,AXS-P8524,accc8e-28511b,,,Existing,,172.30.1.104,VIV-FE9181-H,0002d1-5b965d,N/A,admin; CBSadmin1
+6,C-6 Outdoor GC1,rc2 - d40,dlan10 - 13,IP Outdoor,Wall Mount,,,,,,,,172.30.1.105,VIV-FE9181-H,0002d1-5b965b,N/A,admin; CBSadmin1
+7,C-7 Outdoor GC2,rc2 - d39,dlan10 - 16,IP Outdoor,Wall Mount,,,,,,,,172.30.1.106,VIV-FE9181-H,0002d1-6053e9,N/A,admin; CBSadmin1
+8,C-8 GC Entrance/Exit by Seasonal,rc2 - d38,dlan10 - 15,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.107,VIV-FE9181-H,0002d1-5fd798,N/A,admin; CBSadmin1
+9,C-9 Outdoor GC3,,,IP Outdoor,Wall Mount,,,,,,,,172.30.1.108,VIV-CC8370-HV,0002d1-5ff0c4,N/A,admin; CBSadmin1
+10,C-10 Outdoor GC4,,,IP Outdoor,Wall Mount,,,,,,,,172.30.1.109,VIV-CC8370-HV,0002d1-5ff0c2,N/A,admin; CBSadmin1
+11,C-11 Outdoor Back1,,,IP Outdoor,Wall Mount,,,,,,,,172.30.1.110,AXS-P8524,accc8e-5cd438,N/A,root; CBSadmin1
+12,C-12 Warehouse Emergency Exit1,rc1 - d75,dlan08 - 07,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.111,AXS-P8524,accc8e-5cdcb6,N/A,root; CBSadmin1
+13,C-13 Warehouse Emergency Exit2,rc1 - d79,dlan08 - 06,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.112,AXS-P8524,accc8e-28511b,N/A,root; CBSadmin1
+14,C-14 Outdoor Back2,,,IP Outdoor,Wall Mount,,,,,,,,172.30.1.113,ACTi-E62A,000f7c-113194,N/A,admin; CBSadmin1
+15,C-15 180 Outdoor Receiving,,,IP 180,Wall Mount,172.30.1.109,VIV-CC8370-HV,0002d1-5ff0c2,,,Existing,,172.30.1.114,VIV-CC8370-HV,0002d1-5ff06f,N/A,admin; CBSadmin1
+16,C-16 Outdoor Customer Pickup,rc1 - d27,dlan08 - 05,IP Outdoor,Wall Mount,,,,,,,,172.30.1.115,VIV-CC8370-HV,0002d1-5ff0c3,N/A,admin; CBSadmin1
+17,C-17 Compactor,,,IP Indoor,Ceiling Flush Mount,,,,, Garbage Compactor Cam Location TBD,,,172.30.1.116,PAN-WV-S1131,bcc342-2ddc63,N/A,admin; CBSadmin1
+18,C-18 Warehouse Emegency Exit by Garage,rc1 - d28,dlan08 - 08,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.117,PAN-WV-S1131,bcc342-ce9139,RIV21213,root:CBSadmin1
+19,C-19 Service Entrance w/Monitor,,,IP WD Body,Monitor Mount,,,,,,New,,172.30.1.118,,,,
+20,C-20 Warehouse Parts Pass Thru,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.119,,,,
+21,C-21 Service Counter,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.120,,,,
+22,C-22 Service Counter Overview,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.121,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-3a-41,20180319BBWRC08575178,admin:CBSadmin1
+23,C-23 HS Service Entrance/Exit,,,HS Cam,,172.30.1.111,AXS-P8524,accc8e-5cdcb6,,,Existing,,172.30.1.122,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-38-0f,20180318BBWRC08574616,admin:CBSadmin1
+24,C-24 Cashes 9 - 10,,,IP Indoor,Pole (6-12'),,,,,Main Cash,,,172.30.1.123,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-38-eb,20180319BBWRC08574836,admin:CBSadmin1
+25,C-25 Cashes 7 - 8,,,IP Indoor,Pole (6-12'),,,,,Main Cash,,,172.30.1.124,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-3b-30,20180319BBWRC08575417,admin:CBSadmin1
+26,C-26 Cashes 5 - 6,,,IP Indoor,Pole (6-12'),,,,,Main Cash,,,172.30.1.125,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-37-c5,20180318BBWRC08574542,admin:CBSadmin1
+27,C-27 Cashes 3 - 4,,,IP Indoor,Pole (6-12'),,,,,Main Cash,,,172.30.1.126,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-38-22,20180318BBWRC08574635,admin:CBSadmin1
+28,C-28 Cashes 1 -2,,,IP Indoor,Pole (6-12'),,,,,Main Cash,,,172.30.1.127,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-3a-58,20180319BBWRC08575201,admin:CBSadmin1
+29,C-29 360 Self-Checkouts,,,IP 360,Pole (6-12'),172.30.1.101,VIV-FE9181-H,0002d1-5fd797,,Self Checkouts,Existing,,172.30.1.128,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-38-0c,20180318BBWRC08574613,admin:CBSadmin1
+30,C-30 180 Cash Overview,,,IP 180,Wall Mount,172.30.1.114,VIV-CC8370-HV,0002d1-5ff06f,,No Pole in front of Window,Existing,,172.30.1.129,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-37-c2,20180318BBWRC08574539,admin:CBSadmin1
+31,C-31 Customer Refund1,,,IP Indoor,Pole (6-12'),,,,,Refund Customer Camera,,,172.30.1.130,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-37-d0,20180318BBWRC08574553,admin:CBSadmin1
+32,C-32 Customer Refund2,,,IP Indoor,Pole (6-12'),,,,,Refund Customer Camera,,,172.30.1.131,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-38-4f,20180318BBWRC08574680,admin:CBSadmin1
+33,C-33 On-line Orders,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.132,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-3b-37,20180319BBWRC08575424,admin:CBSadmin1
+34,C-34 Cash GC1,rc2 - d65,dlan11 - 24,IP Indoor,,,,,,Outdoor Cam if not weather proofed,,,172.30.1.133,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-3a-dd,20180319BBWRC08575334,admin:CBSadmin1
+35,C-35 Cash GC2,rc2 - d70,dlan10 - 11,IP Indoor,,,,,,Outdoor Cam if not weather proofed,,,172.30.1.134,HIK-DS-2CD2742FWD-IZS 2.8mm -12mm,94-e1-ac-25-39-3c,20180319BBWRC08574917,admin:CBSadmin1
+36,C-36 Cash Hunting/Fishing Counter,,,IP Indoor,Pole (6-12'),,,,, Hunting/Fishing Cash,,,172.30.1.135,,,,
+37,C-37 Cash Parts Counter,,,IP Indoor,Pole (6-12'),,,,,Parts Counter Cash,,,172.30.1.136,,,,
+38,C-38 Cash Service Counter,,,IP Indoor,Pole (6-12'),,,,,Service Counter Cash,,,172.30.1.137,,,,
+39,C-39 Hunting/Fishing Counter1,rc2 - d24,dlan10 - 19,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.138,,,,
+40,C-40 Hunting/Fishing Counter2,rc2 - d29,dlan10 - 04,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.139,,,,
+41,C-41 Hunting/Fishing Counter Overview,rc2 - d27,dlan10 - 01,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.140,,,,
+42,C-42 Paint Counter Overview,rc1 - d48,dlan07 - 20,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.141,VIV-CC8370-HV,0002d1-728823,,root:CBSadmin1
+43,C-43 Tools Overview,rc1 - d40,dlan07 - 18,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.142,VIV-CC8370-HV,0002d1-728822,,root:CBSadmin1
+44,C-44 360 Receiving,,,IP 360,Pole (6-12'),172.30.1.106,VIV-FE9181-H,0002d1-6053e9,,,Existing,,172.30.1.143,VIV-CC8370-HV,0002d1-728825,,root:CBSadmin1
+45,C-45 Warehouse Receiving ,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.144,VIV-CC8370-HV,0002d1-728824,,root:CBSadmin1
+46,C-46 Parts Counter Overview,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.145,VIV-CC8370-HV,0002d1-728821,,root:CBSadmin1
+47,C-47 360 Starting Place,,,IP 360,Pole (6-12'),172.30.1.102,VIV-FE9181-H,0002d1-60543d,,,Existing,,172.30.1.146,,,,
+48,C-48 360 Seasonal,,,IP 360,Pole (6-12'),172.30.1.107,VIV-FE9181-H,0002d1-5fd798,,,Existing,,172.30.1.147,,,,
+49,C-49 360 Sports,rc2 - d26,dlan10 - 02,IP 360,Pole (6-12'),172.30.1.103,VIV-FE9181-H,0002d1-6053ea,,,Existing,,172.30.1.148,,,,
+50,C-50 360 Paint,rc1 - d44,dlan07 - 15,IP 360,Pole (6-12'),172.30.1.105,VIV-FE9181-H,0002d1-5b965b,,,Existing,,172.30.1.149,,,,
+51,C-51BBQ/Patio Overview1,rc2 - d54,dlan10 - 06,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.150,,,,
+52,C-52 BBQ/Patio Overview2,rc2 - d51,dlan10 - 03,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.151,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-41-db,20180706BBWRC33208514,admin:CBSadmin1
+53,C-53 Seasonal,rc2 - d41,dlan10 - 18,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.152,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-2e,20180706BBWRC33208853,admin:CBSadmin1
+54,C-54 Bikes1,rc1 - d64,dlan07 - 12,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.153,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-45,20180706BBWRC33209388,admin:CBSadmin1
+55,C-55 Bikes2,rc1 - d72,dlan07 - 13,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.154,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-56,20180706BBWRC33209149,admin:CBSadmin1
+56,C-56 Retail Warehouse Door1,rc1 - d73,dlan07 - 11,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.155,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-91,20180706BBWRC33209208,admin:CBSadmin1
+57,C-57 Retail Warehouse Door2,rc1 - d74,dlan07 - 10,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.156,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-42-23,20180706BBWRC33208586,admin:CBSadmin1
+58,C-58 Warehouse Elevator,rc1 - d70,dlan07 - 22,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.157,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-68,20180706BBWRC33209423,admin:CBSadmin1
+59,C-59 GC Entrance/Exit by Sports,rc1 - d65,dlan07 - 14,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.158,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-29,20180706BBWRC33208848,admin:CBSadmin1
+60,C-60 Retail Warehouse Door3,rc1 - d76,dlan07 - 09,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.159,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-16,20180706BBWRC33208829,admin:CBSadmin1
+61,C-61 Warehouse Door4,rc1 - d81,dlan08 - 04,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.160,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-95,20180706BBWRC33209212,admin:CBSadmin1
+62,C-62 Retail Warehouse Door5,rc1 - d23,dlan08 - 24,IP Indoor,Pole (6-12'),,,,,????Retail to Receiving Whs????,,,172.30.1.161,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-c5,20180706BBWRC33209260,admin:CBSadmin1
+63,C-63 Housewares1,rc1 - d49,dlan08 - 09,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.162,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-b5,20180706BBWRC33209244,admin:CBSadmin1
+64,C-64 Housewares2,rc1 - d50,dlan08 - 10,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.163,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-28,20180706BBWRC33209103,admin:CBSadmin1
+65,C-65 Tools1,rc1 - d45,dlan07 - 21,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.164,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-0f,20180706BBWRC33209334,admin:CBSadmin1
+66,C-66 Tools2,rc1 - d47,dlan07 - 16,IP Indoor,Pole (6-12'),,,,,Tools Location TBD,,,172.30.1.165,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-66,20180706BBWRC33208909,admin:CBSadmin1
+67,C-67 Tools3,rc1 - d46,dlan07 - 67,IP Indoor,Pole (6-12'),,,,,Tools Location TBD,,,172.30.1.166,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-f9,20180707BBWRC33209568,admin:CBSadmin1
+68,C-68 Tools4,,,IP Indoor,Pole (6-12'),,,,,Tools Location TBD,,,172.30.1.167,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-20,20180706BBWRC33209095,admin:CBSadmin1
+69,C-69 Retail Warehouse Door6,rc1 - d30,dlan08 - 02,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.168,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-b8,20180706BBWRC33209247,admin:CBSadmin1
+70,C-70 Automotive Aisles1,rc1 - d39,dlan07 - 23,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.169,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-97,20180706BBWRC33208958,admin:CBSadmin1
+71,C-71 Parts Aisles,,,IP Indoor,Pole (6-12'),,,,,Parts Location TBD,,,172.30.1.170,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-d5,20180706BBWRC33209276,admin:CBSadmin1
+72,C-72 Motorcycle Wear,,,IP Indoor,Pole (6-12'),,,,,Motorcycle Wear Location TBD,,,172.30.1.171,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-eb,20180706BBWRC33209298,admin:CBSadmin1
+73,C-73 Automotive Aisles2,,,IP Indoor,Pole (6-12'),,,,,Parts Location TBD,,,172.30.1.172,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-55,20180706BBWRC33209148,admin:CBSadmin1
+74,C-74 Seasonal Emergency Exit,rc2 - d52,dlan10 - 05,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.173,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-eb,20180707BBWRC33209554,admin:CBSadmin1
+75,C-75 Lockup Hunting/Fishing1,rc2 - d30,dlan10 - 10,IP Indoor,Ceiling Flush Mount,,,,,Lockup behind Hunting Location TBD,,,172.30.1.174,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-25,20180706BBWRC33209356,admin:CBSadmin1
+76,C-76 Lockup Hunting/Fishing2,rc2 - d23,dlan10 - 09,IP Indoor,Ceiling Flush Mount,,,,,Lockup behind Hunting Location TBD,,,172.30.1.175,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-82,20180706BBWRC33211753,admin:CBSadmin1
+77,C-77 Lockup Automotive1,rc1 - d24,dlan07 - 17,IP Indoor,Ceiling Flush Mount,,,,,Lockup near Rec Location TBD,,,172.30.1.176,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-f1,20180706BBWRC33211352,admin:CBSadmin1
+78,C-78 Lockup Automotive2,rc1 - d29,dlan08 - 01,IP Indoor,Ceiling Flush Mount,,,,,Lockup near Rec Location TBD,,,172.30.1.177,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-14,20180706BBWRC33211131,admin:CBSadmin1
+79,C-79 Parts Pass Thru Window,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.178,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-34,20180706BBWRC33211419,admin:CBSadmin1
+80,C-80 Warehouse Stairs by Hunting/Fishing,rc2 - d37,dlan10 - 12,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.179,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-18,20180706BBWRC33211391,admin:CBSadmin1
+81,C-81 Fishing Aisle,rc2 - d25,dlan10 - 07,IP Indoor,Pole (6-12'),,,,,Fishing Aisle Location TBD,,,172.30.1.180,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4b-7f,20180706BBWRC33210982,admin:CBSadmin1
+82,C-82 180 Outdoor Garden Center,rc2 - d42,dlan10 - 14,IP 180,Wall Mount,172.30.1.108,VIV-CC8370-HV,0002d1-5ff0c4,,,Existing,,172.30.1.181,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-6b,20180707BBWRC33211474,admin:CBSadmin1
+83,C-83 180 Outdoor Front Entrance,rc2 - d53,dlan10 - 08,IP 180,Wall Mount,172.30.1.115,VIV-CC8370-HV,0002d1-5ff0c3,,,Existing,,172.30.1.182,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4b-3f,20180706BBWRC33210918,admin:CBSadmin1
+84,C-84 180 Outdoor Front Exit,,,IP 180,Wall Mount,,,,,,New,,172.30.1.183,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-0a,20180706BBWRC33211377,admin:CBSadmin1
+85,C-85 180 Outdoor Garage Front,,,IP 180,Wall Mount,,,,,,New,,172.30.1.184,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-41,20180706BBWRC33211432,admin:CBSadmin1
+86,C-86 180 Outdoor Recycling Enclosure,,,IP 180,Wall Mount,,,,,,New,,172.30.1.185,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-39,20180706BBWRC33211680,admin:CBSadmin1
+87,C-87 180 Outdoor Front Parking,,,IP 180,Wall Mount,,,,,TBD,New,,172.30.1.186,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-1a,20180706BBWRC33211393,admin:CBSadmin1
+88,C-88 Garage Front Main1,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.187,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-66,20180707BBWRC33211469,admin:CBSadmin1
+89,C-89 Garage Front Main2,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.188,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-50-08,20180707BBWRC33212143,admin:CBSadmin1
+90,C-90 Garage Back Roll-up Door1,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.189,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-94,20180706BBWRC33211771,admin:CBSadmin1
+91,C-91 Garage Back Roll-up Door2,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.190,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-ae,20180706BBWRC33211285,admin:CBSadmin1
+92,C-92 Garage Front Bay1,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.191,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4b-60,20180706BBWRC33210951,admin:CBSadmin1
+93,C-93 Garage Front Bay2,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.192,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4b-b8,20180706BBWRC33211039,admin:CBSadmin1
+94,C-94 Garage Front Bay3,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.193,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4b-67,20180706BBWRC33210958,admin:CBSadmin1
+95,C-95 Garage Front Bay4,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.194,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-f9,20180706BBWRC33211360,admin:CBSadmin1
+96,C-96 360 Garage Back,,,IP 360,Pole (6-12'),172.30.1.104,VIV-FE9181-H,0002d1-5b965d,,,Existing,,172.30.1.195,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-36,20180706BBWRC33211677,admin:CBSadmin1
+97,C-97 Garage Back Bay,,,IP Indoor,Pole (6-12'),,,,,,,,172.30.1.196,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-bd,20180706BBWRC33211300,admin:CBSadmin1
+98,C-98 360 Garage Front,,,IP 360,Pole (6-12'),,,,,,New,,172.30.1.197,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-e1,20180706BBWRC33211592,admin:CBSadmin1
+99,C-99 180 Outdoor Garage Side,,,IP 180,Wall Mount,,,,,,New,,172.30.1.198,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-fd,20180706BBWRC33211620,admin:CBSadmin1
+100,C-100 Automotive Aisles3,,,IP Indoor,Pole (6-12'),,,,,Parts Location TBD,,,172.30.1.199,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-7a,20180706BBWRC33209185,admin:CBSadmin1
+101,C-101Office Server Room,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.200,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-42-73,20180706BBWRC33208666,admin:CBSadmin1
+102,C-102 Office Staff Lunch Room,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.201,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-42-7b,20180706BBWRC33208674,admin:CBSadmin1
+103,C-103 Office Top of Stairs,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.202,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-56,20180706BBWRC33209405,admin:CBSadmin1
+104,C-104 Office Main Door,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.203,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-fe,20180706BBWRC33209317,admin:CBSadmin1
+105,C-105 Office Cash Room Door,,,IP Indoor,Ceiling Flush Mount,,,,,Day/Night for Cash Room,,,172.30.1.204,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-42-38,20180706BBWRC33208607,admin:CBSadmin1
+106,C-106 Office Cash Room Counter,,,IP Indoor,Ceiling Flush Mount,,,,,Day/Night for Cash Room,,,172.30.1.205,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-4e,20180706BBWRC33208885,admin:CBSadmin1
+107,C-107 Office Locker Rooms,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.206,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-22,20180706BBWRC33209353,admin:CBSadmin1
+108,C-108 Office Bottom of Stairs,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.207,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-86,20180706BBWRC33209197,admin:CBSadmin1
+109,C-109 Office RF Gun Room,,,IP Indoor,Ceiling Flush Mount,,,,,RF Gun TBD,,,172.30.1.208,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-15,20180706BBWRC33208828,admin:CBSadmin1
+110,C-110 Office Time Clock,,,IP Indoor,Ceiling Flush Mount,,,,,Clock - Needs to see Clock & Hall,,,172.30.1.209,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-d9,20180706BBWRC33209024,admin:CBSadmin1
+111,C-111 2nd Floor Tech Lunch,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.210,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-41-3d,20180706BBWRC33208356,admin:CBSadmin1
+112,C-112 2nd Floor Warehouse Stairs1,,,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.211,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-06,20180706BBWRC33208813,admin:CBSadmin1
+113,C-113 2nd Floor Warehouse Stairs2,rc1 - d94,dlan08 - 18,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.212,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-3d,20180706BBWRC33208868,admin:CBSadmin1
+114,C-114 2nd Floor Warehouse Emergency Exit1,rc1 - d91,dlan08 - 19,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.213,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-06,20180706BBWRC33209069,admin:CBSadmin1
+115,C-115 2nd Floor Warehouse Elevator1,rc1 - d90,dlan08 - 20,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.214,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-41-81,20180706BBWRC33208424,admin:CBSadmin1
+116,C-116 2nd Floor Warehouse Stairs3,rc1 - d89,dlan08 - 21,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.215,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-83,20180706BBWRC33209194,admin:CBSadmin1
+117,C-117 2nd Floor Warehouse Emergency Exit2,rc1 - d85,dlan08 - 22,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.216,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-45-4a,20180706BBWRC33209393,admin:CBSadmin1
+118,C-118 2nd Floor Warehouse Elevator2,rc1 - d86,dlan08 - 23,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.217,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-6f,20180706BBWRC33209174,admin:CBSadmin1
+119,C-119 2nd Floor Warehouse Emergency Exit3,rc1 - d82,dlan08 - 11,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.218,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-3c,20180706BBWRC33209123,admin:CBSadmin1
+120,C-120 2nd Floor Warehouse Stairs4,rc2 - d73,dlan11 - 1,IP Indoor,Ceiling Flush Mount,,,,,,,,172.30.1.219,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-a6,20180706BBWRC33208973,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.220,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-42-0d,20180706BBWRC33208564,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.221,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-44-59,20180706BBWRC33209152,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.222,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-43-fc,20180706BBWRC33209059,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.223,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-31,20180706BBWRC33211160,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.224,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-a7,20180707BBWRC33211534,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.225,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-3c,20180706BBWRC33211683,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.226,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-b3,20180706BBWRC33211802,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.227,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-63,20180706BBWRC33211722,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.228,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-83,20180706BBWRC33211754,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.229,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-e8,20180706BBWRC33211599,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.230,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4b-a1,20180706BBWRC33211016,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.231,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4b-fd,20180706BBWRC33211108,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.232,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-c8,20180707BBWRC33211567,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.233,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-75,20180706BBWRC33211740,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.234,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4e-01,20180706BBWRC33211624,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.235,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4d-9a,20180706BBWRC33211521,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.236,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-2c,20180706BBWRC33211155,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.237,HIK-DS-2CD2122FWD-IS 2.8mm,94-e1-ac-f0-4c-9e,20180706BBWRC33211269,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.238,HIK-DS-2CD2122FWD-IS 2.8mm,54-c4-15-10-bd-d5,20161129BBWR683710081,admin:CBSadmin1
+,,,,,,,,,,,,,172.30.1.239,,,,
+,,,,,,,,,,,,,172.30.1.240,,,,
+,,,,,,,,,,,,,172.30.1.241,,,,
+,,,,,,,,,,,,,172.30.1.242,,,,
+,,,,,,,,,,,,,172.30.1.243,,,,
+,,,,,,,,,,,,,172.30.1.244,,,,
+,,,,,,,,,,,,,172.30.1.245,,,,
+,,,,,,,,,,,,,172.30.1.246,,,,

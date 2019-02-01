@@ -1,0 +1,29 @@
+ip address,status,description,hostname,mac,switch,?,port,note,Serial Number,Device Location
+42.242.174.211,Active,tc-office1,TC,,,,,office1.344,DX30000201I20F00415,upper office - Jeannet
+42.242.174.212,Active,tc-office2,TC,,,,,office2.344,DX30000201I20F00314,upper office - Tanya
+42.242.174.213,Active,tc-cashoffice,TC,,,,,cashoffice.344,DX30000201I20F00276,lower office
+42.242.174.214,Active,tc-hr,TC,,,,,hr.344,DX30000201I20F00302,lower office
+42.242.174.215,Active,tc-deptmgr1,TC,,,,,deptmgr1.344,DX30000201I20F00127,lower office
+42.242.174.216,Active,tc-deptmgr2,TC,,,,,deptmgr2.344,DX30000201I20F00110,lower office
+42.242.174.217,Active,tc-custservice1,TC,,,,,custservice1.344,DX30000201I20F00151,customer service desk
+42.242.174.218,Active,tc-custservice2,TC,,,,,custservice2.344,DX30000201I20F00395,customer service desk
+42.242.174.219,Active,tc-onlineorders,TC,,,,,onlineorders.344,DX30000201I20F00081,customer service desk
+42.242.174.220,Active,tc-paint1,TC,,,,,paint1.344,DX30000201I20F00109,paint desk
+42.242.174.221,Active,tc-paint2,TC,,,,,paint2.344,DX30000201I20F00118,paint desk
+42.242.174.222,Active,tc-sports1,TC,,,,,sports1.344,DX30000201I20F00274,hunting/fishing desk
+42.242.174.223,Active,tc-sports2,TC,,,,,sports2.344,DX30000201I20F00284,hunting/fishing desk
+42.242.174.224,Active,tc-sports3,TC,,,,,sports3.344,DX30000201I20F00255,hunting/fishing desk
+42.242.174.225,Active,tc-sports4,TC,,,,,sports4.344,DX30000201I20F00443,Aisle54
+42.242.174.226,Active,tc-gc,TC,,,,,gc.344,DX30000201I20F00161,Garden Center Cash
+42.242.174.227,Active,tc-seasonal1,TC,,,,,seasonal1.344,DX30000201I20F00088,Aisle98
+42.242.174.228,Active,tc-seasonal2,TC,,,,,seasonal2.344,DX30000201I20F00432,Aisle92
+42.242.174.229,Active,tc-housewares1,TC,,,,,housewares1.344,DX30000201I08F00267,Aisle71
+42.242.174.230,Active,tc-housewares2,TC,,,,,housewares2.344,DX30000201I20F00198,Aisle76
+42.242.174.231,Active,tc-custpickup,TC,,,,,custpickup.344,DX30000201I20F00098,warehouse/receiving
+42.242.174.232,Active,tc-techlunch,TC,,,,,techlunch.344,DX30000201I20F00083,above garage
+42.242.174.233,Active,tc-hardeware1,TC,,,,,hardware1.344,DX30000201I20F00149,Aisle30
+42.242.174.234,Active,tc-hardware2,TC,,,,,hardware2.344,DX30000201I20F00112,Aisle21
+42.242.174.235,Active,tc-techwkstn,TC,,,,,techwkstn.344,DX30000201I20F00420,garage
+42.242.174.236,Active,tc-receiving1,TC,,,,,receiving1.344,DX30000201I20F00101,receiving
+42.242.174.237,Active,tc-receiving2,TC,,,,,receiving2.344,DX30000201I20F00170,receiving
+42.242.174.238,Active,tc-guns,TC,,,,,guns.344,DX30000201I20F00060,hunting/fishing desk
