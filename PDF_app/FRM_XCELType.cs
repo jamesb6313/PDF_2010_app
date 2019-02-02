@@ -12,7 +12,7 @@ namespace PDF_app
     public partial class FRM_XCELType : Form
     {
 
-        public string XCELType = "";
+        public string XCELType = "Access Control";
 
         public FRM_XCELType()
         {

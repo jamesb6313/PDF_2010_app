@@ -22,10 +22,12 @@ namespace PDF_app
         private List<myPDFClass> myPDFList = new List<myPDFClass>();
         private List<myXCELClass> myXCELList = new List<myXCELClass>();
         private List<myIPAMClass> myIPAMList = new List<myIPAMClass>();
+        private string curXCELType = "";
 
         //private readonly Size DesignSize = new Size(800, 600);
         private readonly Size DesignSize = new Size(1024, 768);
 
+        #region Initialize
         public Form1()
         {
             InitializeComponent();
@@ -70,6 +72,7 @@ namespace PDF_app
             GetCSVInput();
 
         }
+        #endregion
 
         #region Populate Form Controls
         /// <summary>
@@ -180,7 +183,9 @@ namespace PDF_app
                     if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
                         myIPAMList.Clear();
-                        ReadXCELFile(TBX_XCELFile.Text.Trim(), form2.XCELType);
+                        curXCELType = form2.XCELType;
+
+                        ReadXCELFile(TBX_XCELFile.Text.Trim(), curXCELType);
 
                         if (myIPAMList.Count > 0)
                         {
@@ -233,10 +238,23 @@ namespace PDF_app
 
         private void BTN_NewPDF_Click(object sender, EventArgs e)
         {
-            int Idx = TBX_PDFFile.Text.IndexOf('.');
-            string newName = TBX_PDFFile.Text.Substring(0, Idx) + "_New.pdf";
+            try
+            {
+                int Idx = TBX_PDFFile.Text.IndexOf('.');
+                if (Idx == 0)
+                {
+                    MessageBox.Show("Please enter PDF File name");
+                    return;
+                }
+                string newName = TBX_PDFFile.Text.Substring(0, Idx) + "_New.pdf";
 
-            ChangeAnnotations(TBX_PDFFile.Text, newName);
+                ChangeAnnotations(TBX_PDFFile.Text, newName);
+            }
+            catch (Exception e1)
+                {
+                MessageBox.Show(String.Format("Error : {0}", e1.Message));
+                //throw;
+            }
         }
 
         #endregion
@@ -315,18 +333,8 @@ namespace PDF_app
 
                     try
                     {
-                        //COLUMNS comma delimited
-                        //************************
                         fLine = lines[i].ToString();
-                        cols = fLine.Split(',');                    // columns 0 to 11                    
-
-                        //int j = 0;
-                        //foreach (string col in cols)
-                        //{
-                            
-
-                        //    j++;
-                        //}
+                        cols = fLine.Split(',');                   
 
                         myIPAMClass ln = new myIPAMClass
                         {
@@ -380,10 +388,8 @@ namespace PDF_app
 
                         try
                         {
-                            //COLUMNS comma delimited
-                            //************************
                             fLine = lines[i].ToString();
-                            cols = fLine.Split(',');                    // columns 0 to 11
+                            cols = fLine.Split(',');
                            
 
                             myIPAMClass ln = new myIPAMClass
@@ -421,10 +427,8 @@ namespace PDF_app
 
                         try
                         {
-                            //COLUMNS comma delimited
-                            //************************
                             fLine = lines[i].ToString();
-                            cols = fLine.Split(',');                    // columns 0 to 11                    
+                            cols = fLine.Split(',');                
 
                             myIPAMClass ln = new myIPAMClass
                             {
@@ -462,10 +466,8 @@ namespace PDF_app
 
                         try
                         {
-                            //COLUMNS comma delimited
-                            //************************
                             fLine = lines[i].ToString();
-                            cols = fLine.Split(',');                    // columns 0 to 11                    
+                            cols = fLine.Split(',');                
 
                             myIPAMClass ln = new myIPAMClass
                             {
@@ -503,10 +505,8 @@ namespace PDF_app
 
                         try
                         {
-                            //COLUMNS comma delimited
-                            //************************
                             fLine = lines[i].ToString();
-                            cols = fLine.Split(',');                    // columns 0 to 11                    
+                            cols = fLine.Split(',');                   
 
                             myIPAMClass ln = new myIPAMClass
                             {
@@ -542,6 +542,7 @@ namespace PDF_app
         }
         #endregion
 
+        #region Write output - PDFs and IPAM CSVs
         /// <summary>
         /// ChangeAnnotations
         /// </summary>
@@ -549,6 +550,12 @@ namespace PDF_app
         /// <param name="outputPath"></param>
         void ChangeAnnotations(string inputPath, string outputPath)
         {
+            if (DGV_Info.DataSource == null)
+            {
+                MessageBox.Show("Input source is Grid. Please fill Grid");
+                return;
+                
+            }
             PdfReader reader = new PdfReader(inputPath);
             PdfStamper pdfStamper = new PdfStamper(reader, new FileStream(outputPath, FileMode.Create));
             ////
@@ -576,63 +583,115 @@ namespace PDF_app
 
                             if ((author != null) && (author.ToString().Contains("Legend"))) continue;
 
-                            if ( (comment != null) && (comment.ToString().Contains("AC")) )
+                            if (curXCELType == "Access Control")
                             {
-                                //num = fLine.Substring(5, 20).Trim();              //NUMBER (20 - 5 to 24)
-                                //if (comment.ToString().IndexOf("AC") > 0)
-
-                                var cmtSegs = comment.ToString().Split(' ');
-                                var acNum = 0;
-                                foreach (string c in cmtSegs)
+                                if ((comment != null) && (comment.ToString().Contains("AC")))
                                 {
-                                    if (c.Contains("AC"))
+                                    var cmtSegs = comment.ToString().Split(' ');
+                                    var acNum = 0;
+                                    foreach (string c in cmtSegs)
                                     {
-                                        string acNo = c.Substring(c.IndexOf("AC") + 2);
-
-
-                                        if (Int32.TryParse(acNo, out int x))
+                                        if (c.Contains("AC"))
                                         {
-                                            // you know that the parsing attempt
-                                            // was successful
-                                            acNum = x;
+                                            string acNo = c.Substring(c.IndexOf("AC") + 2);
+
+
+                                            if (Int32.TryParse(acNo, out int x))
+                                            {
+                                                // you know that the parsing attempt was successful
+                                                acNum = x;
+                                            }
+                                            break;
                                         }
-                                        break;
                                     }
-                                }
-                                if (acNum == 0)
-                                {
-                                    MessageBox.Show("Could not get AC number from comment. Need Format AC# where # is between 1 and 999");
-                                }
-                                        //var acNum = comment.ToString().Substring(comment.ToString().IndexOf("AC") + 2, 2).Trim();
-
-                                var IPAMQry =
-                                    from DataGridViewRow rowView in DGV_Info.Rows
-                                    select rowView;
-                                /*
-                                var testQry =
-                                    from DataGridViewRow rowView in dgvRr
-                                    where (
-                                    (string.Compare(rowView.Cells["LINE"].Value.ToString(), vrMSCLineNo) == 0) &&
-                                    (string.Compare(rowView.Cells["SPECIFIC_NUMBERS"].Value.ToString(), "") != 0)
-                                    )
-                                    select rowView;
-                                */
-                                foreach (var row in IPAMQry)
-                                {
-                                    var acRow = row.Cells[0].Value.ToString();
-                                    if (acNum.ToString() == acRow)
+                                    if (acNum == 0)
                                     {
-                                        var updateComment = "AC" + row.Cells[0].Value.ToString() + "; " +
-                                            row.Cells[1].Value.ToString() + "; " +
-                                            row.Cells[8].Value.ToString();
+                                        MessageBox.Show("Could not get AC number from comment. Need Format AC# where # is between 1 and 999");
+                                    }
 
-                                        annot.Put(PdfName.CONTENTS, new PdfString(updateComment.ToString()));
+                                    var IPAMQry =
+                                        from DataGridViewRow rowView in DGV_Info.Rows
+                                        select rowView;
+                                    /*
+                                    var testQry =
+                                        from DataGridViewRow rowView in dgvRr
+                                        where (
+                                        (string.Compare(rowView.Cells["LINE"].Value.ToString(), vrMSCLineNo) == 0) &&
+                                        (string.Compare(rowView.Cells["SPECIFIC_NUMBERS"].Value.ToString(), "") != 0)
+                                        )
+                                        select rowView;
+                                    */
+                                    foreach (var row in IPAMQry)
+                                    {
+                                        var acRow = row.Cells[0].Value.ToString();
+                                        if (acNum.ToString() == acRow)
+                                        {
+                                            var updateComment = "AC" + row.Cells[0].Value.ToString() + "; " +
+                                                row.Cells[1].Value.ToString() + "; " +
+                                                row.Cells[8].Value.ToString();
+
+                                            annot.Put(PdfName.CONTENTS, new PdfString(updateComment.ToString()));
+                                        }
+
                                     }
 
                                 }
-
                             }
+                            
+                            if (curXCELType == "CCTV")
+                            {
+                                if ((comment != null) && (comment.ToString().Contains("C-")))
+                                {
+                                    var cmtSegs = comment.ToString().Split(' ');
+                                    var acNum = 0;
+                                    foreach (string c in cmtSegs)
+                                    {
+                                        if (c.Contains("C-"))
+                                        {
+                                            string acNo = c.Substring(c.IndexOf("C-") + 2);
 
+
+                                            if (Int32.TryParse(acNo, out int x))
+                                            {
+                                                // you know that the parsing attempt was successful
+                                                acNum = x;
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    if (acNum == 0)
+                                    {
+                                        MessageBox.Show("Could not get Camera number (C-) from comment. Need Format AC# where # is between 1 and 999");
+                                    }
+
+                                    var IPAMQry =
+                                        from DataGridViewRow rowView in DGV_Info.Rows
+                                        select rowView;
+                                    /*
+                                    var testQry =
+                                        from DataGridViewRow rowView in dgvRr
+                                        where (
+                                        (string.Compare(rowView.Cells["LINE"].Value.ToString(), vrMSCLineNo) == 0) &&
+                                        (string.Compare(rowView.Cells["SPECIFIC_NUMBERS"].Value.ToString(), "") != 0)
+                                        )
+                                        select rowView;
+                                    */
+                                    foreach (var row in IPAMQry)
+                                    {
+                                        var acRow = row.Cells[0].Value.ToString();
+                                        if (acNum.ToString() == acRow)
+                                        {
+                                            var updateComment = "C-" + row.Cells[0].Value.ToString() + "; " +
+                                                row.Cells[1].Value.ToString() + "; " +
+                                                row.Cells[8].Value.ToString();
+
+                                            annot.Put(PdfName.CONTENTS, new PdfString(updateComment.ToString()));
+                                        }
+
+                                    }
+
+                                }
+                            }
                         }
                     }
                 }
@@ -676,6 +735,7 @@ namespace PDF_app
             }
 
         }
+        #endregion
 
     }
 }
