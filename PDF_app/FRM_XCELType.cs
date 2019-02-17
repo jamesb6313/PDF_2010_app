@@ -12,7 +12,7 @@ namespace PDF_app
     public partial class FRM_XCELType : Form
     {
 
-        public string XCELType = "Access Control";
+        public string XCELType = "CCTV";
 
         public FRM_XCELType()
         {
@@ -27,6 +27,7 @@ namespace PDF_app
             LBX_Types.Items.Add("IPAM Import");         // No Conversion
 
             TBX_Type.Text = "CCTV";
+            XCELType = "CCTV";
         }
 
         private void LBX_Types_SelectedIndexChanged(object sender, EventArgs e)

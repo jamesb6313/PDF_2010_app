@@ -13,16 +13,16 @@ using System.Windows.Forms;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System.IO;
-
+using System.Text.RegularExpressions;
 
 namespace PDF_app
 {
     public partial class Form1 : Form
     {
         private List<myPDFClass> myPDFList = new List<myPDFClass>();
-        private List<myXCELClass> myXCELList = new List<myXCELClass>();
         private List<myIPAMClass> myIPAMList = new List<myIPAMClass>();
-        private string curXCELType = "";
+        private string curXCELType = "CCTV";
+        //private List<myXCELClass> myXCELList = new List<myXCELClass>();
 
         //private readonly Size DesignSize = new Size(800, 600);
         private readonly Size DesignSize = new Size(1024, 768);
@@ -137,10 +137,21 @@ namespace PDF_app
         {
             int Idx = (sender as ListBox).SelectedIndex;
 
-            if ( (sender as ListBox).Name.ToLower().Contains("pdf") )
-                TBX_PDFFile.Text = (sender as ListBox).Items[Idx].ToString();
-            else if ( (sender as ListBox).Name.ToLower().Contains("xcel") )
-                TBX_XCELFile.Text = (sender as ListBox).Items[Idx].ToString();
+            if (Idx != -1)
+            {
+                try
+                {
+                    if ((sender as ListBox).Name.ToLower().Contains("pdf"))
+                        TBX_PDFFile.Text = (sender as ListBox).Items[Idx].ToString();
+                    else if ((sender as ListBox).Name.ToLower().Contains("xcel"))
+                        TBX_XCELFile.Text = (sender as ListBox).Items[Idx].ToString();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+
         }
 
         /// <summary>
@@ -150,7 +161,7 @@ namespace PDF_app
         /// <param name="e"></param>
         private void BTNProcessFillDGV_Click(object sender, EventArgs e)
         {
-            var fileType = (sender as Button).Name.ToLower();
+            //var fileType = (sender as Button).Name.ToLower();
 
             DGV_Info.DataSource = null;
             //myPDFList.Clear();
@@ -158,45 +169,30 @@ namespace PDF_app
             DGV_Info.Rows.Clear();
             DGV_Info.Refresh();
 
-            if (fileType.Contains("pdf"))
+            if ((TBX_XCELFile.Text != null) && (TBX_XCELFile.Text.Trim() != ""))
             {
-                if ((TBX_PDFFile.Text != null) && (TBX_PDFFile.Text.Trim() != ""))
+                var form2 = new FRM_XCELType();
+                if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    myPDFList.Clear();
-                    ReadPDFAnnotations(TBX_PDFFile.Text.Trim());
+                    myIPAMList.Clear();
+                    curXCELType = form2.XCELType;
 
-                    if (myPDFList.Count > 0)
+                    ReadXCELFile(TBX_XCELFile.Text.Trim(), curXCELType);
+
+                    if (myIPAMList.Count > 0)
                     {
-                        DGV_Info.DataSource = myPDFList;
-                        //DGV_Info.Columns["AnnotID"].ReadOnly = true;
-                        //DGV_Info.Columns["Author"].ReadOnly = true;
-                        //DGV_Info.Columns["Subject"].ReadOnly = true;
+                        DGV_Info.DataSource = myIPAMList;
+                        LBL_PDF.Text = curXCELType + " CBS File Type";
                     }
+                    //BTN_ProcessXCEL.Visible = false;
+                    BTN_UpdatePDF.Visible = true;
+                    BTN_SaveIPAM.Visible = true;
+                    //BTN_UpdatePDF.Visible = true;
                 }
-                else 
-                { MessageBox.Show("No file selected"); }
-
-            } else {
-                if ((TBX_XCELFile.Text != null) && (TBX_XCELFile.Text.Trim() != ""))
-                {
-                    var form2 = new FRM_XCELType();
-                    if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                    {
-                        myIPAMList.Clear();
-                        curXCELType = form2.XCELType;
-
-                        ReadXCELFile(TBX_XCELFile.Text.Trim(), curXCELType);
-
-                        if (myIPAMList.Count > 0)
-                        {
-                            DGV_Info.DataSource = myIPAMList;
-                        }
-                        //BTN_ProcessXCEL.Visible = false;
-                    }
-                    else { MessageBox.Show("Action Cancelled"); }
-                }
-                else { MessageBox.Show("No file selected"); }
+                else { MessageBox.Show("Action Cancelled"); }
             }
+            else { MessageBox.Show("No file selected"); }
+
         }
 
         /// <summary>
@@ -204,7 +200,7 @@ namespace PDF_app
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void BTNChangeDir_Click(object sender, EventArgs e)
+        private void BTN_ChangeDir_Click(object sender, EventArgs e)
         {
             if (folderBrowserDialog1.ShowDialog() == DialogResult.OK)
             {
@@ -390,28 +386,32 @@ namespace PDF_app
                         {
                             fLine = lines[i].ToString();
                             cols = fLine.Split(',');
-                           
 
-                            myIPAMClass ln = new myIPAMClass
+                            if (Int32.TryParse(cols[0], out int x))
                             {
-                                ID = int.Parse(cols[0]),
-                                IPAddress = cols[6],
-                                Status = "Active",
-                                Description = cols[1],
-                                Hostname = "CCTV",
-                                Mac = cols[8],
-                                TheSwitch = "",
-                                Unknown = "",
-                                Port = (cols[3] + " & " + cols[2]).ToUpper(),        //Switch & Data
-                                Note = "",
-                                SerialNumber = cols[9],
-                                DeviceLocation = cols[1]
-                            };
-                            myIPAMList.Add(ln);
+                                // you know that the parsing attempt was successful
+                                myIPAMClass ln = new myIPAMClass
+                                {
+                                    ID = x,   //i is current line number
+                                    IPAddress = cols[6],
+                                    Status = "Active",
+                                    Description = cols[1],
+                                    Hostname = "CCTV",
+                                    Mac = cols[8],
+                                    TheSwitch = "",
+                                    Unknown = "",
+                                    Port = (cols[3] + " & " + cols[2]).ToUpper(),        //Switch & Data
+                                    Note = "",
+                                    SerialNumber = cols[9],
+                                    DeviceLocation = cols[1]
+                                };
+                                myIPAMList.Add(ln);
+                            }
+                            
                         }
                         catch (Exception E1)
                         {
-                            MessageBox.Show("An error occurred while processing the File. Error: " + E1.Message + ", fLine = " + fLine + ", Length = " + fLine.Length);
+                            MessageBox.Show("An error occurred while processing the File. Error: " + E1.Message + ", fLine = " + fLine + ", line # = " + i);
                             //throw;
                         }
                     }
@@ -428,28 +428,32 @@ namespace PDF_app
                         try
                         {
                             fLine = lines[i].ToString();
-                            cols = fLine.Split(',');                
+                            cols = fLine.Split(',');
 
-                            myIPAMClass ln = new myIPAMClass
+                            if (Int32.TryParse(cols[0], out int x))
                             {
-                                ID = int.Parse(cols[0]),
-                                IPAddress = cols[6],
-                                Status = "Active",
-                                Description = cols[1],
-                                Hostname = "Access Control",
-                                Mac = cols[7],
-                                TheSwitch = "",
-                                Unknown = "",
-                                Port = (cols[2] + " & " + cols[3]).ToUpper(),        //Switch & Data
-                                Note = "",
-                                SerialNumber = cols[8],
-                                DeviceLocation = cols[1]
-                            };
-                            myIPAMList.Add(ln);
+                                // you know that the parsing attempt was successful
+                                myIPAMClass ln = new myIPAMClass
+                                {
+                                    ID = x,
+                                    IPAddress = cols[6],
+                                    Status = "Active",
+                                    Description = cols[1],
+                                    Hostname = "Access Control",
+                                    Mac = cols[7],
+                                    TheSwitch = "",
+                                    Unknown = "",
+                                    Port = (cols[2] + " & " + cols[3]).ToUpper(),        //Switch & Data
+                                    Note = "",
+                                    SerialNumber = cols[8],
+                                    DeviceLocation = cols[1]
+                                };
+                                myIPAMList.Add(ln);
+                            }
                         }
                         catch (Exception E1)
                         {
-                            MessageBox.Show("An error occurred while processing the File. Error: " + E1.Message + ", fLine = " + fLine + ", Length = " + fLine.Length);
+                            MessageBox.Show("An error occurred while processing the File. Error: " + E1.Message + ", fLine = " + fLine + ", line # = " + i);
                             //throw;
                         }
                     }
@@ -713,6 +717,7 @@ namespace PDF_app
                 var IPAMQry =
                     from DataGridViewRow rowView in DGV_Info.Rows
                     select rowView;
+
                 foreach (var row in IPAMQry)
                 {
                     string outLine = null;
@@ -737,5 +742,208 @@ namespace PDF_app
         }
         #endregion
 
+        private void BTN_UpdatePDF_Click(object sender, EventArgs e)
+        {
+            if (myIPAMList.Count <= 0) {
+                MessageBox.Show("Nothing to update PDF information.");
+            }
+
+            string hn = "";
+
+            if (curXCELType == "Access Control") hn = "Access Control";
+            if (curXCELType == "CCTV") hn = "Camera";
+            else
+            {
+                MessageBox.Show("Can only update CCTV oe Access Control PDF information.");
+            }
+
+            openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                //WriteIPAMImportFile(saveFileDialog1.FileName);
+                string fn = openFileDialog1.FileName.Trim();
+
+                if ((fn != null) && (fn != ""))
+                {
+                    myPDFList.Clear();
+                    ReadPDFAnnotations(fn);
+
+                    if (myIPAMList.Count > 0)
+                        UpdatePDFInfo();
+
+                    if (myPDFList.Count > 0)
+                    {
+                        var chgdList = myPDFList.FindAll(x => x.Subject.Contains(hn));
+
+                        DGV_Info.DataSource = chgdList;
+                        LBL_PDF.Text = hn + " File Information";
+                        //DGV_Info.Columns["AnnotID"].ReadOnly = true;
+                        //DGV_Info.Columns["Author"].ReadOnly = true;
+                        //DGV_Info.Columns["Subject"].ReadOnly = true;
+                    }
+                }
+                else
+                { MessageBox.Show("No file selected"); }
+            }
+        }
+
+        private void UpdatePDFInfo()
+        {
+
+            if (curXCELType == "CCTV")
+            {
+                //CCTV 
+                var IPAMQry =
+                    from DataGridViewRow rowView in DGV_Info.Rows
+                    select rowView;
+
+                foreach (var row in IPAMQry)
+                {
+                    var desc = row.Cells[3].Value.ToString();   //description field
+                    if ((desc != null) && (desc.ToString().Contains("C-")))
+                    {
+                        var cmtSegs = desc.ToString().Split(' ');
+                        var acNum = 0;
+                        foreach (string c in cmtSegs)
+                        {
+                            if (c.Contains("C-"))
+                            {
+                                var strEnd = c.Substring(c.IndexOf("C-") + 1);
+
+                                var stripped = Regex.Replace(strEnd, "[^0-9]", "");
+                                if (Int32.TryParse(stripped, out int x))
+                                {
+                                    // you know that the parsing attempt was successful
+                                    acNum = x;
+                                }
+                                break;
+                            }
+                        }
+
+                        if (acNum == 0)
+                        {
+                            MessageBox.Show("Could not get C- number from comment. Need Format C-# where # is between 1 and 999");
+                        }
+                        else //Find in myPDFList
+                        {
+                            string acIdx = "C-" + acNum.ToString();
+                            int commentNum = 0;
+                            foreach (var item in myPDFList)
+                            {
+                                //var cmtSegs = item.Comment.ToString().Split(' ');
+                                //var acNum = 0;
+                                foreach (string c in item.Comment.ToString().Split(' '))
+                                {
+                                    if (c.Contains("C-"))
+                                    {
+
+                                        var stripped = Regex.Replace(c, "[^0-9]", "");
+                                        if (Int32.TryParse(stripped, out int x))
+                                        {
+                                            // you know that the parsing attempt was successful
+                                            commentNum = x;
+                                        }
+                                        break;
+                                    }
+                                }
+                                if (commentNum == acNum)
+                                {
+                                    item.NewComment = acIdx + "; " +
+                                            row.Cells[1].Value.ToString() + "; " +
+                                            row.Cells[8].Value.ToString();
+                                    break;
+
+                                }
+
+                            }
+                            //var item = myPDFList.Find(x => x.Comment.ToString().Equals(acIdx));     //NEED TO DISTINGUSH BETWEEN C-1 & C-10, C-11.... Also have "(C-12)" therefore Equals no good
+                            //if (item != null)
+
+                        }
+                    }
+
+                }
+
+            }
+            else if (curXCELType == "Access Control")
+            {
+                //Access Control
+                var IPAMQry =
+                    from DataGridViewRow rowView in DGV_Info.Rows
+                    select rowView;
+
+                foreach (var row in IPAMQry)
+                {
+                    var desc = row.Cells[3].Value.ToString();   //description field
+                    if ((desc != null) && (desc.ToString().Contains("AC")))
+                    {
+                        var cmtSegs = desc.ToString().Split(' ');
+                        var acNum = 0;
+                        foreach (string c in cmtSegs)
+                        {
+                            if (c.Contains("AC"))
+                            {
+
+                                var stripped = Regex.Replace(c, "[^0-9]", "");
+                                if (Int32.TryParse(stripped, out int x))
+                                {
+                                    // you know that the parsing attempt was successful
+                                    acNum = x;
+                                }
+                                break;
+                            }
+                        }
+
+                        if (acNum == 0)
+                        {
+                            MessageBox.Show("Could not get AC number from comment. Need Format AC# where # is between 1 and 999");
+                        }
+                        else //Find in myPDFList
+                        {
+                            string acIdx = "AC" + acNum.ToString();
+
+                            int commentNum = 0;
+                            foreach (var item in myPDFList)
+                            {
+                                //var cmtSegs = item.Comment.ToString().Split(' ');
+                                //var acNum = 0;
+                                foreach (string c in item.Comment.ToString().Split(' '))
+                                {
+                                    if (c.Contains("AC"))
+                                    {
+
+                                        var stripped = Regex.Replace(c, "[^0-9]", "");
+                                        if (Int32.TryParse(stripped, out int x))
+                                        {
+                                            // you know that the parsing attempt was successful
+                                            commentNum = x;
+                                        }
+                                        break;
+                                    }
+                                }
+                                if (commentNum == acNum)
+                                {
+                                    item.NewComment = acIdx + "; " +
+                                            row.Cells[1].Value.ToString() + "; " +
+                                            row.Cells[8].Value.ToString();
+                                    break;
+
+                                }
+                            }
+                            //    var item = myPDFList.Find(x => x.Comment.ToString().Contains(acIdx));
+                            //if (item != null)
+                            //{
+                            //    item.NewComment = acIdx + "; " +
+                            //          row.Cells[1].Value.ToString() + "; " +
+                            //          row.Cells[8].Value.ToString();
+                            //}
+                        }
+                    }
+
+                 }
+
+            }
+
+        }
     }
 }

@@ -11,14 +11,7 @@ namespace PDF_app
         public string Author { get; set; }
         public string Subject { get; set; }
         public string Comment { get; set; }
-    }
-
-    class myXCELClass
-    {
-        public int AnnotID { get; set; }
-        public string Author { get; set; }
-        public string Subject { get; set; }
-        public string Comment { get; set; }
+        public string NewComment { get; set; }
     }
 
     class myIPAMClass
