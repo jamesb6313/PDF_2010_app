@@ -945,5 +945,71 @@ namespace PDF_app
             }
 
         }
+
+        private void ReadFileColumns(string fn)
+        {
+
+            string[] lines = System.IO.File.ReadAllLines(fn);
+            for (int i = 1; i <= (lines.Count() - 1); i++)
+            {
+                string[] cols;
+                string fLine = "";
+
+                try
+                {
+                    fLine = lines[i].ToString();
+                    cols = fLine.Split(',');
+
+                    if (Int32.TryParse(cols[0], out int x))
+                    {
+                        // you know that the parsing attempt was successful
+                        myIPAMClass ln = new myIPAMClass
+                        {
+                            ID = x,   //i is current line number
+                            IPAddress = cols[6],
+                            Status = "Active",
+                            Description = cols[1],
+                            Hostname = "CCTV",
+                            Mac = cols[8],
+                            TheSwitch = "",
+                            Unknown = "",
+                            Port = (cols[3] + " & " + cols[2]).ToUpper(),        //Switch & Data
+                            Note = "",
+                            SerialNumber = cols[9],
+                            DeviceLocation = cols[1]
+                        };
+                        myIPAMList.Add(ln);
+                    }
+
+                }
+                catch (Exception E1)
+                {
+                    MessageBox.Show("An error occurred while processing the File. Error: " + E1.Message + ", fLine = " + fLine + ", line # = " + i);
+                    //throw;
+                }
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            /******
+                            FRM_DisplayImage PhotoListForm = new FRM_DisplayImage();
+                PhotoListForm.LoadList(Photos, CurrentPhotoLists);
+                PhotoListForm.Show();
+
+            ReadFileColumns(TBX_XCELFile.Text.Trim());
+
+        *****/
+            var form2 = new FRM_FieldSelections();
+            form2.LoadList(TBX_XCELFile.Text.Trim());
+            if (form2.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                //myIPAMList.Clear();
+                //curXCELType = form2.XCELType;
+            }
+            else { MessageBox.Show("Action Cancelled"); }
+        }
     }
 }

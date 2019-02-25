@@ -54,6 +54,7 @@
             this.LBL_PDF = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             TPG_XCEL = new System.Windows.Forms.TabPage();
             TPG_XCEL.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -79,6 +80,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.BTN_NewPDF);
             this.panel4.Controls.Add(this.BTN_UpdatePDF);
             this.panel4.Controls.Add(this.BTN_SaveIPAM);
@@ -310,6 +312,16 @@
             this.openFileDialog1.DefaultExt = "pdf";
             this.openFileDialog1.Filter = "PDF Files (*.pdf)|*.pdf";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(979, 97);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +374,7 @@
         private System.Windows.Forms.Button BTN_UpdatePDF;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button BTN_NewPDF;
+        private System.Windows.Forms.Button button1;
     }
 }
 
