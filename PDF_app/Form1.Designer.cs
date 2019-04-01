@@ -49,6 +49,7 @@
             this.LBL_PDF = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.BTN_ReadPDF = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -70,6 +71,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Control;
+            this.panel4.Controls.Add(this.BTN_ReadPDF);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Controls.Add(this.CBX_FileType);
             this.panel4.Controls.Add(this.BTN_Mapping);
@@ -252,6 +254,16 @@
             this.openFileDialog1.DefaultExt = "pdf";
             this.openFileDialog1.Filter = "PDF Files (*.pdf)|*.pdf";
             // 
+            // BTN_ReadPDF
+            // 
+            this.BTN_ReadPDF.Location = new System.Drawing.Point(770, 94);
+            this.BTN_ReadPDF.Name = "BTN_ReadPDF";
+            this.BTN_ReadPDF.Size = new System.Drawing.Size(162, 23);
+            this.BTN_ReadPDF.TabIndex = 35;
+            this.BTN_ReadPDF.Text = "Get  PDF Comments";
+            this.BTN_ReadPDF.UseVisualStyleBackColor = true;
+            this.BTN_ReadPDF.Click += new System.EventHandler(this.BTN_ReadPDF_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -295,6 +307,7 @@
         private System.Windows.Forms.Label LBL_SelectXcel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox CBX_FileType;
+        private System.Windows.Forms.Button BTN_ReadPDF;
     }
 }
 

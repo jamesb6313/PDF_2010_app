@@ -249,21 +249,50 @@ namespace PDF_app
         {
             try
             {
-                int Idx = TBX_File.Text.IndexOf('.');
-                if (Idx == 0)
+                openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    MessageBox.Show("Please enter PDF File name");
-                    return;
-                }
-                string newName = TBX_File.Text.Substring(0, Idx) + "_New.pdf";
 
-                ChangeAnnotations(TBX_File.Text, newName);
+                    string fn = openFileDialog1.FileName.Trim();
+
+                    if ((fn != null) && (fn != ""))
+                    {
+
+                        int Idx = fn.IndexOf('.');
+                        if (Idx == 0)
+                        {
+                            MessageBox.Show("Please enter PDF File name");
+                            return;
+                        }
+                        string newName = fn.Substring(0, Idx) + "_New.pdf";
+
+                        ChangeAnnotations(fn, newName);
+                    }
+                }
             }
             catch (Exception e1)
             {
                 MessageBox.Show(String.Format("Error : {0}", e1.Message));
                 //throw;
             }
+
+            //try
+            //{
+            //    int Idx = TBX_File.Text.IndexOf('.');
+            //    if (Idx == 0)
+            //    {
+            //        MessageBox.Show("Please enter PDF File name");
+            //        return;
+            //    }
+            //    string newName = TBX_File.Text.Substring(0, Idx) + "_New.pdf";
+
+            //    ChangeAnnotations(TBX_File.Text, newName);
+            //}
+            //catch (Exception e1)
+            //{
+            //    MessageBox.Show(String.Format("Error : {0}", e1.Message));
+            //    //throw;
+            //}
         }
 
         /// <summary>
@@ -508,11 +537,53 @@ namespace PDF_app
                     {
                         var chgdList = myPDFList.FindAll(x => x.Subject.Contains(hn));
 
+
+                        DGV_Info.DataSource = null;
+                        DGV_Info.Rows.Clear();
+                        DGV_Info.Refresh();
+
                         DGV_Info.DataSource = chgdList;
                         LBL_PDF.Text = hn + " File Information";
                         //DGV_Info.Columns["AnnotID"].ReadOnly = true;
                         //DGV_Info.Columns["Author"].ReadOnly = true;
                         //DGV_Info.Columns["Subject"].ReadOnly = true;
+                    }
+                }
+                else
+                { MessageBox.Show("No file selected"); }
+            }
+        }
+
+        /// <summary>
+        /// BTN_ReadPDF_Click()
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void BTN_ReadPDF_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.InitialDirectory = Directory.GetCurrentDirectory();
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string fn = openFileDialog1.FileName.Trim();
+
+                if ((fn != null) && (fn != ""))
+                {
+                    myPDFList.Clear();
+                    ReadPDFAnnotations(fn);
+
+                    if (myIPAMList.Count > 0)
+                        UpdatePDFInfo();
+
+                    if (myPDFList.Count > 0)
+                    {
+                        var chgdList = myPDFList;
+
+                        DGV_Info.DataSource = null;
+                        DGV_Info.Rows.Clear();
+                        DGV_Info.Refresh();
+
+                        DGV_Info.DataSource = chgdList;
+                        LBL_PDF.Text = "PDF File  Comments";
                     }
                 }
                 else
@@ -529,53 +600,58 @@ namespace PDF_app
         /// <param name="PDF"></param>
         private void ReadPDFAnnotations(string PDF)
         {
-            PdfReader reader = new PdfReader(PDF);
-            int cnt = 0;
-
-
-            for (int i = 1; i <= reader.NumberOfPages; i++)
+            try
             {
-                PdfArray array = reader.GetPageN(i).GetAsArray(PdfName.ANNOTS);
-                if (array == null) continue;
+                PdfReader reader = new PdfReader(PDF);
+                int cnt = 0;
 
-                for (int j = 0; j < array.Size; j++)
+                for (int i = 1; i <= reader.NumberOfPages; i++)
                 {
-                    PdfDictionary annot = array.GetAsDict(j);
-                    List<PdfName> keys = annot.Keys.ToList();
+                    PdfArray array = reader.GetPageN(i).GetAsArray(PdfName.ANNOTS);
+                    if (array == null) continue;
 
-                    if (annot != null || (annot.Length != 0))
+                    for (int j = 0; j < array.Size; j++)
                     {
-                        if (annot.Get(PdfName.SUBTYPE).Equals(PdfName.CIRCLE))
+                        PdfDictionary annot = array.GetAsDict(j);
+                        List<PdfName> keys = annot.Keys.ToList();
+
+                        if (annot != null || (annot.Length != 0))
                         {
-
-                            PdfString comment = annot.GetAsString(PdfName.CONTENTS);
-                            PdfString author = annot.GetAsString(PdfName.T);
-
-                            var subj = keys.Find(x => x.ToString() == "/Subj");
-                            var subject = annot.Get(subj);
-
-                            if (author != null)
+                            if (annot.Get(PdfName.SUBTYPE).Equals(PdfName.CIRCLE))
                             {
-                                if (author.ToString().Contains("Legend")) continue;
-                                if (author.ToString().Contains("View")) continue;
-                                if (author.ToString().Contains("Monitor")) continue;
+
+                                PdfString comment = annot.GetAsString(PdfName.CONTENTS);
+                                PdfString author = annot.GetAsString(PdfName.T);
+
+                                var subj = keys.Find(x => x.ToString() == "/Subj");
+                                var subject = annot.Get(subj);
+
+                                if (author != null)
+                                {
+                                    if (author.ToString().Contains("Legend")) continue;
+                                    if (author.ToString().Contains("View")) continue;
+                                    if (author.ToString().Contains("Monitor")) continue;
+                                }
+
+                                cnt += 1;
+                                myPDFClass temp = new myPDFClass
+                                {
+                                    AnnotID = cnt,
+                                    Comment = (comment != null) ? Convert.ToString(comment).Trim() : "",
+                                    Author = (author != null) ? Convert.ToString(author).Trim() : "null!",
+                                    Subject = (subject != null) ? Convert.ToString(subject).Trim() : "null!"
+                                };
+                                myPDFList.Add(temp);
                             }
-
-                            cnt += 1;
-                            myPDFClass temp = new myPDFClass
-                            {
-                                AnnotID = cnt,
-                                Comment = (comment != null) ? Convert.ToString(comment).Trim() : "",
-                                Author = (author != null) ? Convert.ToString(author).Trim() : "null!",
-                                Subject = (subject != null) ? Convert.ToString(subject).Trim() : "null!"
-                            };
-
-                            myPDFList.Add(temp);
                         }
                     }
                 }
+                reader.Close();
             }
-            reader.Close();
+            catch (Exception e)
+            {
+                MessageBox.Show("Error :" + e.Message, "Reading file error");
+            }
         }
 
         /// <summary>
@@ -746,8 +822,7 @@ namespace PDF_app
                 }
 
                 //Converts CBS Access Control spreadsheet format to IPAM Import Format
-                if (type == "Access Control")
-                {
+                if (type == "Access Control") {
 
                     for (int i = start; i <= (lines.Count() - 1); i++)
                     {
@@ -897,6 +972,10 @@ namespace PDF_app
                 return;
 
             }
+            var IPAMQry =
+                from DataGridViewRow rowView in DGV_Info.Rows
+                select rowView;
+
             PdfReader reader = new PdfReader(inputPath);
             PdfStamper pdfStamper = new PdfStamper(reader, new FileStream(outputPath, FileMode.Create));
 
@@ -951,11 +1030,6 @@ namespace PDF_app
                                     }
                                     else //Get new string from Grid - New Comment
                                     {
-
-                                        var IPAMQry =
-                                            from DataGridViewRow rowView in DGV_Info.Rows
-                                            select rowView;
-
                                         string acIdx = "C-" + acNum.ToString();
                                         int commentNum = 0;
 
@@ -1030,9 +1104,6 @@ namespace PDF_app
                                         MessageBox.Show("Could not get AC number from comment. Need Format AC# where # is between 1 and 999");
                                     }
 
-                                    var IPAMQry =
-                                        from DataGridViewRow rowView in DGV_Info.Rows
-                                        select rowView;
                                     /*
                                     var testQry =
                                         from DataGridViewRow rowView in dgvRr
@@ -1085,11 +1156,6 @@ namespace PDF_app
                                     }
                                     else //Get new string from Grid - New Comment
                                     {
-
-                                        var IPAMQry =
-                                            from DataGridViewRow rowView in DGV_Info.Rows
-                                            select rowView;
-
                                         string acIdx = "C-" + acNum.ToString();
                                         int commentNum = 0;
 
