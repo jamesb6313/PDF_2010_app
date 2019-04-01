@@ -325,172 +325,7 @@ namespace PDF_app
 
                 if (form3.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
-                    myIPAMList.Clear();
-
-                    string[] lines = System.IO.File.ReadAllLines(TBX_File.Text.Trim());
-                    if (lines.Count() <= 0)
-                    {
-                        MessageBox.Show("Cannot process empty file. Please try again.");
-                        return;
-                    }
-
-                    int start = DetermineStartLine();
-
-                    if (start == -1)
-                    {
-                        MessageBox.Show("Cannot process file without knowing the first line of data. Please try again.");
-                        return;
-                    }
-
-                    for (int i = start; i <= (lines.Count() - 1); i++)
-                    {
-                        string[] cols;
-                        string fLine = "";
-
-                        try
-                        {
-                            fLine = lines[i].ToString();
-                            cols = fLine.Split(',');
-
-                            //int x;
-                            //if (Int32.TryParse(cols[0], out x))
-                            //{
-                            // you know that the parsing attempt was successful
-
-                            string s;
-                            int mapIdx;
-
-                            myIPAMClass ln = new myIPAMClass { };
-                            //ln.ID = i - (start - 1);
-                            //IP
-                            s = form3.mapping[0];
-                            if (s != "-1")
-                            {
-                                mapIdx = Int32.Parse(s);
-                                ln.IPAddress = cols[mapIdx];
-                            }
-                            else ln.IPAddress = "";
-
-                            //Status
-                            ln.Status = "Active";
-
-                            //Description
-                            s = form3.mapping[2];
-                            if (s != "-1")
-                            {
-                                mapIdx = Int32.Parse(s);
-                                ln.Description = cols[mapIdx];
-                            }
-                            else ln.Description = "";
-
-                            //Hostname
-                            ln.Hostname = curXCELType;
-
-                            //MAC
-                            s = form3.mapping[4];
-                            if (s != "-1")
-                            {
-                                mapIdx = Int32.Parse(s);
-                                ln.Mac = cols[mapIdx];
-                            }
-                            else ln.Mac = "";
-
-                            ln.TheSwitch = "";
-                            ln.Unknown = "";
-
-                            //Port
-                            s = form3.mapping[7];
-                            if (s != "-1")
-                            {
-                                if (s.Contains("&"))
-                                {
-                                    string[] prts;
-                                    prts = s.Split('&');
-
-                                    int mp = Int32.Parse(prts[0]);
-                                    mapIdx = Int32.Parse(prts[1]);
-                                    ln.Port = (cols[mp] + " & " + cols[mapIdx]).ToUpper();
-                                }
-                                else
-                                {
-                                    mapIdx = Int32.Parse(s);
-                                    ln.Port = cols[mapIdx].ToUpper();
-                                }
-                            }
-                            else ln.Port = "";
-                            //ln.Port.ToUpper();
-
-                            //Note
-                            s = form3.mapping[8];
-                            if (s != "-1")
-                            {
-                                if (s.Contains("&"))
-                                {
-                                    string[] prts;
-                                    prts = s.Split('&');
-                                    string note = "";
-
-                                    foreach (var p in prts)
-                                    {
-                                        mapIdx = Int32.Parse(p);
-                                        if (cols[mapIdx] != "")
-                                        {
-                                            if (note == "") note = cols[mapIdx];
-                                            else note = note + " & " + cols[mapIdx];
-                                        }
-                                    }
-                                    ln.Note = note;
-                                }
-                                else
-                                {
-                                    mapIdx = Int32.Parse(s);
-                                    ln.Note = cols[mapIdx];
-                                }
-                            }
-                            else ln.Note = "";
-
-                            //SerialNumber
-                            s = form3.mapping[9];
-                            if (s != "-1")
-                            {
-                                mapIdx = Int32.Parse(s);
-                                ln.SerialNumber = cols[mapIdx];
-                            }
-                            else ln.SerialNumber = "";
-
-
-                            //DeviceLocation
-                            s = form3.mapping[10];
-                            if (s != "-1")
-                            {
-                                mapIdx = Int32.Parse(s);
-                                ln.DeviceLocation = cols[mapIdx];
-                            }
-                            else ln.DeviceLocation = "";
-
-                            myIPAMList.Add(ln);
-                            // }
-                        }
-                        catch (Exception E1)
-                        {
-                            MessageBox.Show("An error occurred while processing the File. Error: " + E1.Message);
-                            //throw;
-                        }
-                    }
-
-
-                    if (myIPAMList.Count > 0)
-                    {
-                        DGV_Info.DataSource = null;
-                        DGV_Info.Rows.Clear();
-                        DGV_Info.Refresh();
-
-                        DGV_Info.DataSource = myIPAMList;
-                        LBL_PDF.Text = "User mapping of Input File";
-                    }
-                    //BTN_ProcessXCEL.Visible = false;
-                    BTN_UpdatePDF.Visible = true;
-                    BTN_SaveIPAM.Visible = true;
+                    GetIPAMMapping(TBX_File.Text.Trim(), form3);  
                 }
                 else { MessageBox.Show("Action Cancelled"); }
             }
@@ -513,6 +348,7 @@ namespace PDF_app
             string hn = "";
 
             if (curXCELType == "Access Control") hn = "Access Control";
+            else 
             if (curXCELType == "CCTV") hn = "Camera";
             else
             {
@@ -748,6 +584,171 @@ namespace PDF_app
                 MessageBox.Show("No file selected");
                 curXCELType = "";
             }
+        }
+
+        private void GetIPAMMapping(string fn, FRM_FieldSelections form3)
+        {
+            myIPAMList.Clear();
+
+            string[] lines = System.IO.File.ReadAllLines(TBX_File.Text.Trim());
+            if (lines.Count() <= 0)
+            {
+                MessageBox.Show("Cannot process empty file. Please try again.");
+                return;
+            }
+
+            int start = DetermineStartLine();
+
+            if (start == -1)
+            {
+                MessageBox.Show("Cannot process file without knowing the first line of data. Please try again.");
+                return;
+            }
+
+            for (int i = start; i <= (lines.Count() - 1); i++)
+            {
+                string[] cols;
+                string fLine = "";
+
+                try
+                {
+                    fLine = lines[i].ToString();
+                    cols = fLine.Split(',');
+
+                    string s;
+                    int mapIdx;
+
+                    myIPAMClass ln = new myIPAMClass { };
+                    //ln.ID = i - (start - 1);
+                    //IP
+                    s = form3.mapping[0];
+                    if (s != "-1")
+                    {
+                        mapIdx = Int32.Parse(s);
+                        ln.IPAddress = cols[mapIdx];
+                    }
+                    else ln.IPAddress = "";
+
+                    //Status
+                    ln.Status = "Active";
+
+                    //Description
+                    s = form3.mapping[2];
+                    if (s != "-1")
+                    {
+                        mapIdx = Int32.Parse(s);
+                        ln.Description = cols[mapIdx];
+                    }
+                    else ln.Description = "";
+
+                    //Hostname
+                    ln.Hostname = curXCELType;
+
+                    //MAC
+                    s = form3.mapping[4];
+                    if (s != "-1")
+                    {
+                        mapIdx = Int32.Parse(s);
+                        ln.Mac = cols[mapIdx];
+                    }
+                    else ln.Mac = "";
+
+                    ln.TheSwitch = "";
+                    ln.Unknown = "";
+
+                    //Port
+                    s = form3.mapping[7];
+                    if (s != "-1")
+                    {
+                        if (s.Contains("&"))
+                        {
+                            string[] prts;
+                            prts = s.Split('&');
+
+                            int mp = Int32.Parse(prts[0]);
+                            mapIdx = Int32.Parse(prts[1]);
+                            ln.Port = (cols[mp] + " & " + cols[mapIdx]).ToUpper();
+                        }
+                        else
+                        {
+                            mapIdx = Int32.Parse(s);
+                            ln.Port = cols[mapIdx].ToUpper();
+                        }
+                    }
+                    else ln.Port = "";
+                    //ln.Port.ToUpper();
+
+                    //Note
+                    s = form3.mapping[8];
+                    if (s != "-1")
+                    {
+                        if (s.Contains("&"))
+                        {
+                            string[] prts;
+                            prts = s.Split('&');
+                            string note = "";
+
+                            foreach (var p in prts)
+                            {
+                                mapIdx = Int32.Parse(p);
+                                if (cols[mapIdx] != "")
+                                {
+                                    if (note == "") note = cols[mapIdx];
+                                    else note = note + " & " + cols[mapIdx];
+                                }
+                            }
+                            ln.Note = note;
+                        }
+                        else
+                        {
+                            mapIdx = Int32.Parse(s);
+                            ln.Note = cols[mapIdx];
+                        }
+                    }
+                    else ln.Note = "";
+
+                    //SerialNumber
+                    s = form3.mapping[9];
+                    if (s != "-1")
+                    {
+                        mapIdx = Int32.Parse(s);
+                        ln.SerialNumber = cols[mapIdx];
+                    }
+                    else ln.SerialNumber = "";
+
+
+                    //DeviceLocation
+                    s = form3.mapping[10];
+                    if (s != "-1")
+                    {
+                        mapIdx = Int32.Parse(s);
+                        ln.DeviceLocation = cols[mapIdx];
+                    }
+                    else ln.DeviceLocation = "";
+
+                    myIPAMList.Add(ln);
+                    // }
+                }
+                catch (Exception E1)
+                {
+                    MessageBox.Show("An error occurred while processing the File. Error: " + E1.Message);
+                    //throw;
+                }
+            }
+
+
+            if (myIPAMList.Count > 0)
+            {
+                DGV_Info.DataSource = null;
+                DGV_Info.Rows.Clear();
+                DGV_Info.Refresh();
+
+                DGV_Info.DataSource = myIPAMList;
+                LBL_PDF.Text = "User mapping of Input File";
+            }
+            //BTN_ProcessXCEL.Visible = false;
+            BTN_UpdatePDF.Visible = true;
+            BTN_SaveIPAM.Visible = true;
         }
 
         /// <summary>
@@ -1195,7 +1196,6 @@ namespace PDF_app
             }
             pdfStamper.Close();
         }
-
 
         /// <summary>
         /// UpdatePDFInfo
