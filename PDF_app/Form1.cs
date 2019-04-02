@@ -267,6 +267,11 @@ namespace PDF_app
                         string newName = fn.Substring(0, Idx) + "_New.pdf";
 
                         ChangeAnnotations(fn, newName);
+                        MessageBox.Show(String.Format("File {0} created from {1}", newName, fn));
+                    }
+                    else
+                    {
+                        MessageBox.Show("File processing error. Null or blank name");
                     }
                 }
             }
@@ -372,7 +377,6 @@ namespace PDF_app
                     if (myPDFList.Count > 0)
                     {
                         var chgdList = myPDFList.FindAll(x => x.Subject.Contains(hn));
-
 
                         DGV_Info.DataSource = null;
                         DGV_Info.Rows.Clear();
@@ -586,11 +590,16 @@ namespace PDF_app
             }
         }
 
+        /// <summary>
+        /// GetIPAMMapping()
+        /// </summary>
+        /// <param name="fn">CSV File name - TBX_File.Text.Trim() </param>
+        /// <param name="form3">need mapping list</param>
         private void GetIPAMMapping(string fn, FRM_FieldSelections form3)
         {
             myIPAMList.Clear();
 
-            string[] lines = System.IO.File.ReadAllLines(TBX_File.Text.Trim());
+            string[] lines = System.IO.File.ReadAllLines(fn);
             if (lines.Count() <= 0)
             {
                 MessageBox.Show("Cannot process empty file. Please try again.");

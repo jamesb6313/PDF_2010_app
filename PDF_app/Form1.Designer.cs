@@ -30,6 +30,7 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.BTN_ReadPDF = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.CBX_FileType = new System.Windows.Forms.ComboBox();
             this.BTN_Mapping = new System.Windows.Forms.Button();
@@ -49,7 +50,6 @@
             this.LBL_PDF = new System.Windows.Forms.Label();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.BTN_ReadPDF = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -86,6 +86,16 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1264, 156);
             this.panel4.TabIndex = 12;
+            // 
+            // BTN_ReadPDF
+            // 
+            this.BTN_ReadPDF.Location = new System.Drawing.Point(770, 94);
+            this.BTN_ReadPDF.Name = "BTN_ReadPDF";
+            this.BTN_ReadPDF.Size = new System.Drawing.Size(162, 23);
+            this.BTN_ReadPDF.TabIndex = 35;
+            this.BTN_ReadPDF.Text = "Get  PDF Comments";
+            this.BTN_ReadPDF.UseVisualStyleBackColor = true;
+            this.BTN_ReadPDF.Click += new System.EventHandler(this.BTN_ReadPDF_Click);
             // 
             // label1
             // 
@@ -135,7 +145,7 @@
             this.BTN_UpdatePDF.Name = "BTN_UpdatePDF";
             this.BTN_UpdatePDF.Size = new System.Drawing.Size(162, 23);
             this.BTN_UpdatePDF.TabIndex = 30;
-            this.BTN_UpdatePDF.Text = "Update PDF File";
+            this.BTN_UpdatePDF.Text = "Show PDF Comments";
             this.BTN_UpdatePDF.UseVisualStyleBackColor = true;
             this.BTN_UpdatePDF.Visible = false;
             this.BTN_UpdatePDF.Click += new System.EventHandler(this.BTN_UpdatePDF_Click);
@@ -253,16 +263,6 @@
             // 
             this.openFileDialog1.DefaultExt = "pdf";
             this.openFileDialog1.Filter = "PDF Files (*.pdf)|*.pdf";
-            // 
-            // BTN_ReadPDF
-            // 
-            this.BTN_ReadPDF.Location = new System.Drawing.Point(770, 94);
-            this.BTN_ReadPDF.Name = "BTN_ReadPDF";
-            this.BTN_ReadPDF.Size = new System.Drawing.Size(162, 23);
-            this.BTN_ReadPDF.TabIndex = 35;
-            this.BTN_ReadPDF.Text = "Get  PDF Comments";
-            this.BTN_ReadPDF.UseVisualStyleBackColor = true;
-            this.BTN_ReadPDF.Click += new System.EventHandler(this.BTN_ReadPDF_Click);
             // 
             // Form1
             // 
